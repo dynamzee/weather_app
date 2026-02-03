@@ -18,8 +18,8 @@ Check out the app here: [https://weather-app-w4r8.onrender.com](https://weather-
 * **Version Control:** Git & GitHub
 
 ## 📸 Preview
-*! [my_app_screenshot]
-(my_app_screenshot.png)*
+![my_app_screenshot]
+(my_app_screenshot.png)
 
 ---
 *Created with ❤️ by Dynamzee.*
