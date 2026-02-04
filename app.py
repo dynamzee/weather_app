@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-API_KEY = "02213a39fba9c0d3cc7e63391dd30c9e"  # your OpenWeatherMap API key
+API_KEY = "02213a39fba9c0d3cc7e63391dd30c9e"
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -15,22 +15,36 @@ def index():
         if city:
             url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}"
             try:
-                response = requests.get(url)
-                response.raise_for_status()
-                data = response.json()
+                response = requests.get(url, timeout=5)
 
-                if data["cod"] == 200:
+                if response.status_code == 200:
+                    data = response.json()
                     weather = {
-                        "temp_c": round(data["main"]["temp"] - 273.15, 1),
-                        "temp_f": round((data["main"]["temp"] * 9/5) - 459.67, 1),
+                        "temp_f": round((data["main"]["temp"] * 9 / 5) - 459.67, 0),
                         "description": data["weather"][0]["description"].title(),
                         "emoji": get_weather_emoji(data["weather"][0]["id"])
                     }
                 else:
-                    error = data.get("message", "Could not fetch weather data.")
+                    match response.status_code:
+                        case 400:
+                            error = "Bad Request:<br>Check city name."
+                        case 401:
+                            error = "Unauthorized:<br>Invalid API key."
+                        case 404:
+                            error = "Not Found:<br>City does not exist."
+                        case 500:
+                            error = "Server Error:<br>Try again later."
+                        case _:
+                            error = f"Error occurred:<br>{response.status_code}"
 
-            except requests.exceptions.RequestException as e:
-                error = f"Error: {e}"
+            except requests.exceptions.ConnectionError:
+                error = "Connection error:<br>Please check your internet connection."
+            except requests.exceptions.Timeout:
+                error = "Timeout error:<br>Please try again, the request timed out."
+            except requests.exceptions.TooManyRedirects:
+                error = "Too many Redirects:<br>Check the url."
+            except requests.exceptions.RequestException as req_error:
+                error = f"Request Error:<br>{req_error}."
 
     return render_template("index.html", weather=weather, error=error)
 
@@ -60,3 +74,12 @@ def get_weather_emoji(weather_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+
+
+
+
+
+
