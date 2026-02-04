@@ -30,15 +30,23 @@ def index():
                 else:
                     match response.status_code:
                         case 400:
-                            error = "Bad Request:<br>Check city name."
+                            error = "Bad Request:<br>Please check your city name."
                         case 401:
                             error = "Unauthorized:<br>Invalid API key."
+                        case 403:
+                            error = "Forbidden:<br>Access is denied."
                         case 404:
-                            error = "Not Found:<br>City does not exist."
+                            error = "Not found:<br>City not found."
                         case 500:
-                            error = "Server Error:<br>Try again later."
+                            error = "Internal Server:<br>Internal Server Error."
+                        case 502:
+                            error = "Bad Gateway:<br>Bad Gateway."
+                        case 503:
+                            error = "Service Unavailable:<br>Service Unavailable."
+                        case 504:
+                            error = "Gateway Timeout:<br>Gateway Timeout."
                         case _:
-                            error = f"Error occurred:<br>{response.status_code}"
+                            error = f"HTTP error occurred: {response.status_code}"
 
             except requests.exceptions.ConnectionError:
                 error = "Connection error:<br>Please check your internet connection."
