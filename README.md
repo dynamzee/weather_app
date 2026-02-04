@@ -1,6 +1,6 @@
-# 🌤️ Real-Time Weather Application
+# 🌤️ Real-Time Weather Application.
 
-A sleek, responsive web application that provides live weather data for cities worldwide. Built with Python and Flask, this project demonstrates API integration, backend logic, and cloud deployment.
+A clean, "opinionated" and responsive weather web application that provides live weather data for cities worldwide. Built with Python and Flask, this project demonstrates API integration, backend logic, and cloud deployment. This project follows a philosophy by Antoine de Saint Exupέry which I live/code by: "A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing to take away."
 
 ## 🚀 Live Demo
 Check out the app here: [https://weather-app-w4r8.onrender.com](https://weather-app-w4r8.onrender.com)
@@ -13,13 +13,13 @@ Check out the app here: [https://weather-app-w4r8.onrender.com](https://weather-
 
 ## 🛠️ Tech Stack
 * **Backend:** Python, Flask
-* **Frontend:** HTML5, CSS3
+* **Frontend:** HTML5, CSS3, Jinja2
 * **Deployment:** Render, Gunicorn
 * **Version Control:** Git & GitHub
 
 ## 📸 Preview
-![my_app_screenshot]
+![my_weather_app_screenshot]
 (my_app_screenshot.png)
 
 ---
-*Created with ❤️ by Dynamzee.*
+*Weather app orchestrated and created by Nwobu Prince (dynamzee).*
