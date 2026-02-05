@@ -19,7 +19,7 @@ Check out the app here: [https://weather-app-w4r8.onrender.com](https://weather-
 
 ## 📸 Preview
 ![my_weather_app_screenshot]
-(my_app_screenshot.png)
+(my_weather_app_screenshot.png)
 
 ---
 *Weather app orchestrated and created by Nwobu Prince (dynamzee).*
